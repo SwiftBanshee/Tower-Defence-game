@@ -64,4 +64,36 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Update()
+    {
+        //1
+        if (wayPointIndex <
+        WayPointManager.Instance.Paths[pathIndex].WayPoints.Count)
+        {
+            UpdateMovement();
+        }
+        else
+        { // 2
+            OnGotToLastWayPoint();
+        }
+    }
+    private void UpdateMovement()
+    {
+        //3
+        Vector3 targetPosition =
+        WayPointManager.Instance.Paths[pathIndex]
+        .WayPoints[wayPointIndex].position;
+        //4
+        transform.position = Vector3.MoveTowards(
+        transform.position, targetPosition,
+        moveSpeed * Time.deltaTime);
+        //5
+        transform.LookAt(targetPosition);
+        //6
+        if (Vector3.Distance(transform.position, targetPosition) < .1f)
+        {
+            wayPointIndex++;
+        }
+    }
 }
