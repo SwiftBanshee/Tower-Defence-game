@@ -39,4 +39,23 @@ public static class UtilityMethods
 
 
     }
+
+    // 1
+    public static Quaternion SmoothlyLook(Transform fromTransform,
+    Vector3 toVector3)
+    {
+        //2
+        if (fromTransform.position == toVector3)
+        {
+            return fromTransform.localRotation;
+        }
+        //3
+        Quaternion currentRotation = fromTransform.localRotation;
+        Quaternion targetRotation = Quaternion.LookRotation(toVector3 -
+        fromTransform.position);
+        //4
+        return Quaternion.Slerp(currentRotation, targetRotation,
+        Time.deltaTime * 10f);
+    }
+
 }
