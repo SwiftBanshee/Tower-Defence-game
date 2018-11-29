@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public GameObject blackBackground;
 
     public GameObject centerWindow;
+
+    public GameObject damageCanvas;
+
     //3
     public Text txtGold;
     public Text txtWave;
@@ -103,4 +106,22 @@ GetComponent<RectTransform>(), towerSlot.transform.position);
             centerWindow.SetActive(false);
         }
     }
+
+    //1
+    public void ShowDamage()
+    {
+        StartCoroutine(DoDamageAnimation());
+    }
+    //2
+    private IEnumerator DoDamageAnimation()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(true);
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(false);
+        }
+    }
+
 }
