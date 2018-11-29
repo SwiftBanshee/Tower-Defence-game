@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(gameWinSound,
         Camera.main.transform.position);
         gameOver = true;
+        UIManager.Instance.ShowWinScreen();
     }
     //6
     public void QuitToTitleScreen()
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
             // Too many enemies escaped, you lose the game
             OnGameLose();
+
         }
     }
     //2
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
         Camera.main.transform.position);
         EnemyManager.Instance.DestroyAllEnemies();
         WaveManager.Instance.StopSpawning();
+        UIManager.Instance.ShowLoseScreen();
     }
     //3
     public void RetryLevel()
