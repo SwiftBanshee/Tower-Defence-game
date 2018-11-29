@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     public Text txtWave;
     public Text txtEscapedEnemies;
 
+    public Transform enemyHealthBars;
+    public GameObject enemyHealthBarPrefab;
+
     //1
     void Awake()
     {
@@ -68,6 +71,16 @@ GetComponent<RectTransform>(), towerSlot.transform.position);
     {
         blackBackground.SetActive(true);
         loseGameWindow.SetActive(true);
+    }
+
+    public void CreateHealthBarForEnemy(Enemy enemy)
+    {
+        //2
+        GameObject healthBar = Instantiate(enemyHealthBarPrefab);
+        //3
+        healthBar.transform.SetParent(enemyHealthBars, false);
+        //4
+        healthBar.GetComponent<EnemyHealthBar>().enemy = enemy;
     }
 
 }
