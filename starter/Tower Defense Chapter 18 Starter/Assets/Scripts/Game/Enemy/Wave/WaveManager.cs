@@ -45,6 +45,9 @@ public class WaveManager : MonoBehaviour {
 
                 GameManager.Instance.waveNumber++;
                 //6
+
+                UIManager.Instance.ShowCenterWindow("Wave " + GameManager.Instance.waveNumber);
+
                 break;
             }
         }
